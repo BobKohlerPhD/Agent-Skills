@@ -1,0 +1,7 @@
+{
+  "name": "sota-clinical-visualizer",
+  "description": "High-fidelity protocol for generating SOTA clinical neural-gait visualizations.",
+  "version": "1.0.0",
+  "author": "Gemini CLI",
+  "capabilities": ["visualization", "neuroscience", "simulation"]
+}
