@@ -1,0 +1,5 @@
+{
+  "name": "real-time-neural-field",
+  "description": "General framework for real-time brain data visualization (EEG/fMRI/Connectomics).",
+  "version": "1.0.0"
+}
