@@ -1,0 +1,8 @@
+explicit_only: false
+positive:
+  - "Fix the header and profile-image alignment across the Home and About pages of my Quarto portfolio."
+  - "Update this Institutional Editorial research site while preserving its typography, palette, and responsive rhythm."
+negative:
+  - "Design a real-time trading dashboard with dense market data and order-entry controls."
+  - "Build a generic SaaS admin console with tables, filters, and account management."
+  - "Create a mobile game landing screen in a neon cyberpunk style."

@@ -1,0 +1,8 @@
+explicit_only: false
+positive:
+  - "Assess my fit for the latest job posting in the career sandbox, but do not rewrite my CV yet."
+  - "Tailor my CV and cover letter for this stretch role using only canonical evidence."
+negative:
+  - "Help me practice behavioral interview answers for tomorrow."
+  - "Rewrite my LinkedIn profile without using a target job posting."
+  - "Give me general salary-negotiation advice."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "MyoSuite Gait Controller"
+  short_description: "Develop verified MyoSuite gait visualizations"
+  default_prompt: "Use $myosuite-gait-controller to inspect and repair this MyoSuite gait mapping without assuming joint indices."
+
+policy:
+  allow_implicit_invocation: true

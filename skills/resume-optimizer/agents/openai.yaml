@@ -1,0 +1,7 @@
+interface:
+  display_name: "Resume Optimizer"
+  short_description: "Assess fit and build grounded applications"
+  default_prompt: "Use $resume-optimizer to assess the latest sandbox posting and create only the application artifacts I request."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,8 @@
+explicit_only: false
+positive:
+  - "Stabilize the live EEG cortical animation without hiding missing or low-amplitude frames."
+  - "Fix the event alignment and dropped-frame behavior in this real-time neural field visualizer."
+negative:
+  - "Create a static publication figure comparing resting-state functional connectivity across groups."
+  - "Interpret this EEG recording and tell me whether the patient has Parkinson's disease."
+  - "Repair the joint mapping in the MyoSuite gait controller."

@@ -1,0 +1,8 @@
+explicit_only: false
+positive:
+  - "Replace the fragile qpos indices in my myoSarcLegWalk gait mapper with verified joint access."
+  - "Debug the Matsuoka CPG transition into and out of the annotated freeze pose in MyoSuite."
+negative:
+  - "Stabilize the cortical EEG color normalization in the neural animation."
+  - "Train a generic MuJoCo reinforcement-learning policy for a robotic arm."
+  - "Use this gait animation to prove that the intervention restores walking in patients."

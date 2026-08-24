@@ -1,0 +1,7 @@
+interface:
+  display_name: "Institutional Editorial Web"
+  short_description: "Maintain an editorial institutional web system"
+  default_prompt: "Use $institutional-editorial-web to update this content-led site while preserving its established design system."
+
+policy:
+  allow_implicit_invocation: true

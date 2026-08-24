@@ -1,0 +1,7 @@
+interface:
+  display_name: "Real-Time Neural Field"
+  short_description: "Build stable event-aligned neural animations"
+  default_prompt: "Use $real-time-neural-field to revise this neural animation pipeline while preserving signal and event provenance."
+
+policy:
+  allow_implicit_invocation: true

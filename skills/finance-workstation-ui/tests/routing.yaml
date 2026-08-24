@@ -1,0 +1,8 @@
+explicit_only: false
+positive:
+  - "Redesign this model-evaluation workstation so sample adequacy, out-of-sample evidence, parameter distributions, and execution risk are visible together."
+  - "Build a dense broker research interface comparing strategy performance, uncertainty, drawdown, liquidity, and operational status."
+negative:
+  - "Create a marketing landing page for a personal finance newsletter."
+  - "Restyle this Quarto research portfolio using its established editorial design system."
+  - "Make a generic quarterly sales dashboard for the executive team."
