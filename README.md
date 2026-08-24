@@ -1,9 +1,10 @@
+# Agent Skills
 
-A collection of skills from random projects 
+A collection of skills from random projects.
 
 ## Skills
 
-| Skill |
+| Skill | Description |
 | --- | --- |
 | [Finance UI](skills/finance-workstation-ui/) | Dense quantitative-finance, trading, risk, market-research, and model-evaluation interfaces where evidence and operational state must remain legible. |
 | [Institutional Editorial Web](skills/institutional-editorial-web/) | Maintaining an established Institutional Editorial design system for content-led websites and project-scoped Quarto portfolios. |
@@ -11,16 +12,17 @@ A collection of skills from random projects
 | [Real-Time Neural Field](skills/real-time-neural-field/) | Stable, event-aligned EEG, fMRI, or connectomics animation with explicit normalization, interpolation, timing, and stale-frame behavior. |
 | [Resume Optimizer](skills/resume-optimizer/) | Evidence-grounded job fit assessment and requested CV tailoring inside a protected career sandbox. |
 
+## Installation
 
 ```bash
 ./scripts/link-user-skills.sh
 ```
-Script creates a symlink for skill without deleting user skills and Codex should detect changes automatically. Create a project link to the same canonical package for skills that need to be discoverable from a specific project path.
+
+The script creates a symlink for each skill without deleting user skills, and Codex should detect changes automatically. Create a project link to the same canonical package for skills that need to be discoverable from a specific project path.
 
 ```bash
 ./scripts/link-project-skills.sh /path/to/project skill-name [additional-skill-name ...]
 ```
-
 
 ## Layout
 
