@@ -2,6 +2,7 @@ explicit_only: false
 positive:
   - "Redesign this model-evaluation workstation so sample adequacy, out-of-sample evidence, parameter distributions, and execution risk are visible together."
   - "Build a dense broker research interface comparing strategy performance, uncertainty, drawdown, liquidity, and operational status."
+  - "Refine an existing quantitative research workbench while preserving its documented design system, read-only boundary, and evidence-first review flow."
 negative:
   - "Create a marketing landing page for a personal finance newsletter."
   - "Restyle this Quarto research portfolio using its established editorial design system."

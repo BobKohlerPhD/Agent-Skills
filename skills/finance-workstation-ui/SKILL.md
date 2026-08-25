@@ -7,6 +7,19 @@ description: Design and refine advanced quantitative-finance, trading, market-re
 
 Build analytical workstations whose hierarchy is determined by evidence and operator decisions, not by generic dashboard patterns or finance-themed decoration.
 
+## Respect the Existing Workstation Contract
+
+For an established application, inspect its maintained design and UX contract before
+choosing a visual direction or changing a shared interaction. Treat the documented
+runtime token owner, canonical components, route model, and read-only or order-capable
+boundary as authoritative. This skill provides finance-specific defaults; it does not
+authorize a competing stylesheet, template, component vocabulary, or workflow.
+
+Keep project-specific palettes, file paths, broker policies, and route names in the
+project. Promote only reusable decision rules into this skill. A research-only surface
+should clearly communicate that it does not place or authorize orders, while an
+order-capable surface must make its separate authorization boundary explicit.
+
 ## Establish the Analytical Contract
 
 Before editing the interface, identify:
@@ -66,7 +79,7 @@ Unless the user or an established product system says otherwise:
 
 - Prefer a continuous workstation canvas over floating cards.
 - Use a compact product bar and stable analytical regions instead of ornamental navigation.
-- Use dark navy-charcoal surfaces with subtle elevation. Avoid glass effects, strong gradients, neon glows, decorative blobs, and oversized hero copy.
+- Establish a high-contrast product shell with restrained analytical surfaces. A dark workstation or daylight research-folio treatment can both be appropriate; follow the established product contract and usage scene rather than applying a terminal theme by reflex. Avoid glass effects, strong gradients, neon glows, decorative blobs, and oversized hero copy.
 - Reserve green and red for directional, outcome, or risk meaning. Use restrained cyan or indigo for selection and focus.
 - Use low-contrast borders, minimal shadows, modest radii, and tabular numerals.
 - Keep a readable 15–16px desktop body baseline. Dense information may be compact, but primary values and controls must remain legible.
@@ -81,7 +94,10 @@ Preserve existing data bindings and auditability. Do not fabricate data to compl
 
 ## Implementation and Review
 
-Centralize visual and numeric-formatting tokens. Preserve existing behavior, accessibility, responsive navigation, and authorization boundaries unless the user asks to change them.
+Centralize visual and numeric-formatting tokens. Preserve the documented runtime token
+owner, existing behavior, accessibility, responsive navigation, and authorization
+boundaries unless the user asks to change them. Do not add a parallel theme or
+screen-local template to an established workstation.
 
 After implementation:
 

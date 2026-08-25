@@ -2,6 +2,13 @@
 
 Use this review for substantial redesigns and reference-driven work.
 
+## Contract First
+
+For an established application, inspect its maintained design and UX contract before
+extracting a visual system. Reuse the documented runtime token owner and shared
+component vocabulary. A reference can inform hierarchy and density, but it must not
+replace the product's existing theme, route behavior, or authorization boundary.
+
 ## Reference Extraction
 
 Record the decisions that actually matter:
@@ -12,6 +19,9 @@ Record the decisions that actually matter:
 - major page inset, panel gap, panel padding, and row height;
 - navigation model, grid columns, and responsive collapse;
 - radius, border, shadow, and focus treatment.
+
+Choose light or dark from the documented usage scene and product contract. Do not infer
+that a finance application must use a dark terminal treatment.
 
 Do not reproduce logos, avatars, account identifiers, decorative charts, or arbitrary example content from the reference.
 
