@@ -20,11 +20,12 @@ Treat clinical events as supplied annotations unless the project contains a vali
 3. Preserve scientific meaning through the render pipeline:
    - derive normalization from the project or supplied specification;
    - distinguish preprocessing, temporal smoothing, nonlinear display scaling, and colormap limits;
+   - quantify values clipped at the display limits and flag frames or regions dominated by saturation;
    - never turn absent or invalid signal into apparent activation;
    - mark stale, dropped, or reused frames in state or metadata.
 4. Validate spatial mapping against the current mesh and sensor coordinates. Normalize interpolation weights safely and define behavior for sensors without valid coordinates.
 5. Keep rendering state explicit. Reset caches and smoothing state between subjects or sessions, and do not leak prior-frame state across independent runs.
-6. Make alerts or event overlays provenance-aware. Use wording such as "annotated freeze event" when driven by an events file; reserve "detected" for an actual detection algorithm.
+6. Make alerts or event overlays provenance-aware. Use wording such as "annotated freeze event" when driven by an events file; reserve "detected" for an actual detection algorithm, and reserve "real-time" for a live or latency-characterized path rather than recorded frame playback.
 7. Render only the requested deliverable and verify it before reporting completion.
 
 ## Project routing
@@ -41,9 +42,10 @@ Check the observable properties relevant to the change:
 - source timestamps, feature windows, event intervals, and frames share a documented time base;
 - NaNs, infinities, empty channels, and zero-weight mesh vertices have defined behavior;
 - low-amplitude activity remains distinguishable from missing or stale data;
+- clipping fractions at `vmin` and `vmax` are reported; warn on materially saturated frames rather than silently changing normalization or applying per-frame autoscaling;
 - smoothing reduces display jitter without moving event timing or hiding transient structure;
 - subject/session changes reset caches and state;
-- generated files exist, are non-empty, and can be decoded;
+- generated files exist, are non-empty, can be decoded, and preserve the requested frame count and total duration even when frames look alike;
 - labels and legends describe transformations and event provenance accurately.
 
 Report the inputs used, material normalization or timing decisions, generated artifacts, and checks performed.

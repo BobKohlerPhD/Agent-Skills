@@ -24,6 +24,8 @@ Verify at runtime before editing:
 
 Current source accesses the model through `env.unwrapped.sim`. New code should prefer the current public object exposed by the installed MyoSuite version when available, while remaining compatible with the checked-out environment.
 
+At 15 FPS, one frame spans `0.066666…` seconds, which is not divisible by the current `0.01` CPG step. Advance six `0.01` steps plus a `0.006666…` remainder, or use an equivalent elapsed-time accumulator. `int((1 / fps) / dt)` advances only `0.06` seconds per frame and causes controller/render drift.
+
 ## Verified joint mapping
 
 Resolve names against the live model; the current model reports these qpos addresses:
@@ -39,6 +41,12 @@ Resolve names against the live model; the current model reports these qpos addre
 | Left ankle | `ankle_angle_l` | 29 |
 
 Use MuJoCo named access or derive the address from `jnt_qposadr`; keep numeric values only as checked compatibility assertions.
+
+## Default-state and range handling
+
+Start a complete playback target from the live model's `qpos0` or reset state, then overwrite the root and named gait joints. Do not initialize all 35 coordinates to zero: this model contains dependent knee translation and rotation coordinates whose defaults and declared ranges are not meaningful as independently commanded joints.
+
+Validate shape and finiteness for the full target. Apply range assertions to the named hinge coordinates the mapper controls. Do not reject the model's own default state by applying independent-control assumptions to coupled internal coordinates.
 
 ## Current oscillator and pose presets
 
@@ -65,6 +73,17 @@ These are project presets. Preserve them unless the requested change or observed
 - post-render sharpness enhancement.
 
 Keep these settings outside the controller contract. Ensure renderer and environment cleanup occurs even if export fails.
+
+## Timing and transition checks
+
+Exercise a deterministic walk → `break cnt` hold → walk sequence even when the requested clip does not contain resumption. Confirm:
+
+- right and left hip signals remain anti-phase and both phases occur;
+- only the intended knee flexes in each phase;
+- freeze entry resets once, repeated freeze steps hold the same pose, and root translation stops;
+- resumption produces finite state and follows the project's intentional reset semantics.
+
+Decode each exported animation and compare its frame count, summed frame delays, and effective FPS with the requested 120-frame, 8-second, 15-FPS contract. GIF delays are quantized to 10 ms and some encoders coalesce equal-looking frames; use a 60/70 ms delay pattern or another verified export strategy rather than one truncated delay for every frame.
 
 ## Useful inspection
 

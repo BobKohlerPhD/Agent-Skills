@@ -27,11 +27,15 @@ Verify these values in source before relying on them:
 
 These are project presets, not general neuroimaging recommendations. Change them only for a concrete project reason and record the before/after behavior.
 
+The fixed display range is a comparability preset, not evidence that every frame preserves spatial contrast. A verified `sub-038` preview produced materially saturated high-end frames. For each render, record the overall fraction at or above `vmax`, the maximum per-frame fraction, and counts of frames dominated by clipping. If saturation is excessive, prefer a cohort-calibrated fixed range or another documented shared transform; do not silently introduce per-frame autoscaling.
+
 ## Event semantics
 
 Clinical state comes from the participant events TSV. `EEGProcessor.get_event_at_time()` selects an event by onset and duration, and the gait mapper treats the exact `break cnt` label as a freeze interval.
 
 Because the state is read from annotations, prefer labels such as `FREEZE EVENT` or `ANNOTATED FREEZE`. Do not describe this path as a learned or physiological freeze detector.
+
+The walking EEG path is recorded frame playback. Label it `recorded EEG` or `frame-based` unless a separate live acquisition path has measured latency and stale-frame behavior.
 
 ## Rendering and outputs
 
@@ -48,11 +52,16 @@ venv/bin/python scripts/generate_visuals.py --participant sub-XXXX
 
 Before a full render, confirm that the participant EEG and events files exist. Full generation downloads or reads neuroimaging assets and may be expensive; do not run it merely to prove that an unrelated text-only change was made.
 
+For 15-FPS GIF output, verify decoded timing rather than trusting `duration=int(1000/fps)`: GIF delays are quantized to 10 ms, so a repeated truncated delay produces the wrong total duration. Use verified mixed delays or another format, and check that equal-looking frames were not coalesced.
+
+When initializing a Matplotlib scatter that may later display masked data, start with finite neutral values and apply masks only to invalid frames. A collection initialized fully masked can remain visually empty after later array updates. Keep a visible signal-state or provenance label within the rendered canvas rather than outside clipped axes.
+
 ## Project-specific review
 
 - Compare `n_frames`, GIF duration, and the expected 15 FPS.
+- Report overall and per-frame clipping at the fixed color limits.
 - Confirm every sampled EEG index is within bounds.
 - Confirm `motor_indices` is non-empty before averaging.
 - Reset `EEGVisualizer` caches between runs.
 - Check that the event label shown to the viewer matches its provenance.
-- Visually inspect early, event-transition, and late frames rather than only the first frame.
+- Visually inspect early, immediately before transition, exact transition, and late frames rather than only the first frame.

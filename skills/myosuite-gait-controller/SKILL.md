@@ -21,9 +21,9 @@ Do not describe kinematic playback as a dynamically validated gait controller or
 
 ## Workflow
 
-1. Inspect the installed MyoSuite and MuJoCo versions, registered environment ID, model dimensions, timestep, joint names, qpos addresses, actuators, joint ranges, and renderer backend.
-2. Trace the complete state path from oscillator or event input to model state. Keep the CPG integration timestep, MuJoCo model timestep, and render cadence distinct.
-3. Address joints by model name or by qpos addresses derived from the current model. If a named joint is absent or has an unexpected width, stop and report the incompatibility instead of applying an index guessed from another model.
+1. Inspect the installed MyoSuite and MuJoCo versions, registered environment ID, model dimensions, timestep, default or reset state, joint names, qpos addresses, actuators, joint ranges, and renderer backend.
+2. Trace the complete state path from oscillator or event input to model state. Keep the CPG integration timestep, MuJoCo model timestep, and render cadence distinct. If a fixed integration step does not divide a frame period, use an accumulator or a final remainder step instead of truncating elapsed time.
+3. Address joints by model name or by qpos addresses derived from the current model. If a named joint is absent or has an unexpected width, stop and report the incompatibility instead of applying an index guessed from another model. Initialize untouched coordinates from the inspected model state rather than assuming an all-zero `qpos`; validate limits for the coordinates the mapper intentionally controls without treating coupled or model-internal coordinates as independent controls.
 4. Preserve state-transition semantics. Define what happens on entry to a freeze/stop interval, throughout the interval, and on resumption; reset oscillator state only when that behavior is intentional.
 5. Keep camera and aesthetic presets separate from the controller. A rendering change should not silently alter simulation or kinematic state.
 6. Make the smallest requested change and validate the relevant mode.
@@ -41,10 +41,10 @@ For every controller or mapping change, check:
 - environment creation and reset succeed;
 - expected joint names resolve and model dimensions match the mapping;
 - generated state contains only finite values and stays within intentionally enforced limits;
-- left/right phase behavior and event transitions are observable and reproducible;
+- left/right phase behavior and a walk → event hold → resumption sequence are observable and reproducible;
 - root translation, joint assignment, and rendering use the intended mode;
 - no claim of physical stability is made from `mj_forward`-only playback;
-- frame count, cadence, camera tracking, and export format agree;
+- decoded frame count, total duration, effective FPS, camera tracking, and export format agree; do not assume an encoder preserved equal-looking frames or requested timing;
 - resources are closed after rendering.
 
 For dynamic control, also evaluate contacts, falls, actuator controls, rewards or task metrics, and a meaningful rollout duration. For kinematic playback, report that dynamic stability and control feasibility were not tested.
